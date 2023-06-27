@@ -12,6 +12,9 @@ import Login from '../components/Login';
 import Register from '../components/Register';
 import Dashboard from '../components/Dashboard';
 
+//GoogleCallBach
+import GoogleCallBack from '../components/GoogleCallBack';
+
 const AppRoutes = () => {
     return (
         <Router>
@@ -26,6 +29,9 @@ const AppRoutes = () => {
                 <Route path="/login" Component={Login} />
                 <Route path="/register" Component={Register} />
                 <Route path="/dashboard" Component={Dashboard} />
+
+                //GoogleAuth
+                <Route path="/googlecallback" Component={GoogleCallBack} />
             </Routes>
         </Router>
     );
