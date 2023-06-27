@@ -4,6 +4,7 @@ import * as icons from 'react-icons/bi';
 
 const Login: React.FC = () => {
 
+    console.log('teste');
     const [rememberMe, setRememberMe] = useState(false);
 
     const handleRememberMeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
