@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import PrivateRoute from '../utils/PrivateRoute';
 
 //Page
 import Home from '../components/Home';
@@ -14,6 +15,7 @@ import Dashboard from '../components/Dashboard';
 
 //GoogleCallBach
 import GoogleCallBack from '../components/GoogleCallBack';
+
 
 const AppRoutes = () => {
     return (
