@@ -1,6 +1,15 @@
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import * as icons from 'react-icons/bi';
 
-const Login = () => {
+const Login: React.FC = () => {
+
+    const [rememberMe, setRememberMe] = useState(false);
+
+    const handleRememberMeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setRememberMe(event.target.checked);
+    };
+
     const handleLoginGoogle = () => {
         fetch('http://localhost:3001/api/googleauth', {
             method: 'GET',
@@ -35,11 +44,18 @@ const Login = () => {
 
                         <div className="row mb-4">
 
-                            <button type="button" className="btn btn-primary btn-block mb-4">Sign in</button>
+                            <button type="button" className="btn btn-outline-success btn-block mb-4">Sign in</button>
+                            <button type="button" className="btn btn-outline-primary btn-block me-3">
+                                <Link to="/register" className='text-decoration-none text-reset'>Register</Link>
+                            </button>
+
+                        </div>
+                        <div className="row mb-4">
 
                             <div className="col d-flex justify-content-center">
                                 <div className="form-check">
-                                    <input className="form-check-input" type="checkbox" value="" id="form2Example31" checked />
+                                    <input className="form-check-input" type="checkbox" value="" id="form2Example31" checked={rememberMe}
+                                        onChange={handleRememberMeChange} />
                                     <label className="form-check-label" htmlFor="form2Example31"> Remember me </label>
                                 </div>
                             </div>
