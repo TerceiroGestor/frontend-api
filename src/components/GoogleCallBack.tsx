@@ -7,14 +7,12 @@ const GoogleCallBack = () => {
     const navigate = useNavigate();
     const searchParams = new URLSearchParams(location.search);
     const code = searchParams.get('code');
-    console.log('teste');
     
     if(code){
 
         useEffect(() => {
 
-            fetch('http://localhost:3001/api/googlecallback', {
-    
+            fetch('http://localhost:5577/api/googleauth', {
             method: 'POST',
             mode: 'cors',
             headers: {
@@ -28,7 +26,6 @@ const GoogleCallBack = () => {
                 if (!response.ok) {
                     throw new Error('Erro ao fazer a requisição: ' + response.status);
                 }
-    
                 return response.json();
             })
             .then(data => {

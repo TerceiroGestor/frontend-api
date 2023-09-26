@@ -1,57 +1,68 @@
+import { useState } from 'react';
+
 const Register = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [name, setName] = useState('');
+    const [response, setResponse] = useState('');
+
+    const handleRegister = async () => {
+
+        fetch('http://localhost:3000/api/register/create', {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ name, email, password }),
+        })
+            .then(response => { return response.text() })
+            .then((text) => setResponse(text))
+            .catch(error => {
+                setResponse(error.toString())
+                console.log(error.toString())
+            })
+    };
+
     return (
-        <div className="container">
-            <div className="d-flex align-items-center justify-content-center m-5">
+        <div className="container" style={{ maxWidth: 700 }}>
 
-                < form className="m-5">
-                    <div className="form-outline mb-4">
-                        <input type="email" id="form2Example1" className="form-control" />
-                        <label className="form-label" htmlFor="form2Example1">Email</label>
-                    </div>
-
-                    <div className="form-outline mb-4">
-                        <input type="password" id="form2Example2" className="form-control" />
-                        <label className="form-label" htmlFor="form2Example2">Password</label>
-                    </div>
-
-                    <div className="row mb-4">
-                        <div className="col d-flex justify-content-center">
-                            <div className="form-check">
-                                <input className="form-check-input" type="checkbox" value="" id="form2Example31" checked />
-                                <label className="form-check-label" htmlFor="form2Example31"> Remember me </label>
-                            </div>
-                        </div>
-
-                        <div className="col">
-                            <a href="#!">Forgot password?</a>
-                        </div>
-                    </div>
-
-                    <button type="button" className="btn btn-primary btn-block mb-4">Sign in</button>
-
-                    <div className="text-center">
-                        <p>Not a member? <a href="#!">Register</a></p>
-                        <p>or sign up with:</p>
-                        <button type="button" className="btn btn-link btn-floating mx-1">
-                            <i className="fab fa-facebook-f"></i>
-                        </button>
-
-                        <button type="button" className="btn btn-link btn-floating mx-1">
-                            <i className="fab fa-google"></i>
-                        </button>
-
-                        <button type="button" className="btn btn-link btn-floating mx-1">
-                            <i className="fab fa-twitter"></i>
-                        </button>
-
-                        <button type="button" className="btn btn-link btn-floating mx-1">
-                            <i className="fab fa-github"></i>
-                        </button>
-                    </div>
-                </form >
-
+            <div className="d-flex justify-content-center mt-5">
+                <div className="row">
+                    <h2 className="">Registrar</h2>
+                </div>
             </div>
-        </div >
+
+            < form className="form-group mt-5">
+                <div className="row">
+                    <div className="form-group mb-2">
+                        <input type="email" id="form2Example1" value={name} onChange={(event) => setName(event.target.value)} className="form-control" />
+                        <label className="form-label" htmlFor="form2Example1">Name</label>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-md-6">
+                        <div className="form-outline mb-2">
+                            <input type="email" id="form2Example2" value={email} onChange={(event) => setEmail(event.target.value)} className="form-control" />
+                            <label className="form-label" htmlFor="form2Example2">Email</label>
+                        </div>
+                    </div>
+                    <div className="col-md-6">
+                        <div className="form-outline mb-2">
+                            <input type="password" id="form2Example3" value={password} onChange={(event) => setPassword(event.target.value)} className="form-control" />
+                            <label className="form-label" htmlFor="form2Example3">Password</label>
+                        </div>
+                    </div>
+                </div>
+                <div className="d-flex justify-content-end">
+                    <button type="button" className="btn btn-primary" onClick={handleRegister}>Register</button>
+                </div>
+            </form >
+
+            <div className="row mt-5">
+                <div>{response} </div>
+            </div>
+        </div>
     );
 }
 

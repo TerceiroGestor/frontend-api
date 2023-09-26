@@ -1,16 +1,16 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import PrivateRoute from '../utils/PrivateRoute';
+//import PrivateRoute from '../utils/PrivateRoute';
 
 //Page
 import Home from '../components/Home';
 import About from '../components/About';
 import Team from '../components/Team';
 
-
 //Sistema
-import Main from '../components/Main';
+//import Main from '../components/Main';
 import Login from '../components/Login';
 import Register from '../components/Register';
+import Form from '../components/Form';
 import Dashboard from '../components/Dashboard';
 
 //GoogleCallBach
@@ -27,9 +27,12 @@ const AppRoutes = () => {
                 <Route path="/team" Component={Team} />
 
                 //Sistema
-                <Route path="/" Component={Main} />
+                <Route path="/" Component={Home} />
                 <Route path="/login" Component={Login} />
                 <Route path="/register" Component={Register} />
+                <Route path="/form" Component={Form} />
+
+                //PrivateRoute
                 <Route path="/dashboard" Component={Dashboard} />
 
                 //GoogleAuth
