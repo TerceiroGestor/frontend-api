@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, redirect } from 'react-router-dom';
 import * as icons from 'react-icons/bi';
 import Cookies from 'js-cookie';
+
+
 
 const Login: React.FC = () => {
 
@@ -15,11 +17,12 @@ const Login: React.FC = () => {
     };
 
     const handleLoginGoogle = () => {
-        fetch('http://localhost:3000/api/login', {
+        fetch(`${import.meta.env.VITE_API_GATEWAY}`, {
             method: 'POST',
             mode: 'cors',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': `{"key":"${import.meta.env.VITE_API_KEY}", "token":"mkjhuaio"}`,
             },
             body: JSON.stringify({ email, password }),
         })
@@ -30,7 +33,9 @@ const Login: React.FC = () => {
                 if(data.token){
                     Cookies.set('user', JSON.stringify(data), { expires: 7 });
                     Cookies.set('token', data.token, { expires: 7 });
+                    redirect("http://localhost:3002/dashboard");
                 }
+
                 setResponse(JSON.stringify(data));
             })
 
